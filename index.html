@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turn Your LinkedIn From Invisible to Influential</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #faf8ff;
+      --surface: #f2f3ff;
+      --white: #ffffff;
+      --primary: #004e99;
+      --primary-dark: #001b3d;
+      --linkedin: #0a66c2;
+      --ink: #131b2e;
+      --ink-2: #414752;
+      --ink-3: #727783;
+      --mint: #6cf8bb;
+      --mint-soft: rgba(108, 248, 187, 0.5);
+      --green: #00714d;
+      --green-2: #006c49;
+      --blue-soft: #d6e3ff;
+      --blue-text: #dbe6ff;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 1px 1px rgba(0,0,0,0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+      --shadow-xl: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+    button, input { font: inherit; }
+
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; }
+
+    /* ---------- Shared type ---------- */
+    .eyebrow {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.65px;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 48px;
+      letter-spacing: -0.8px;
+      color: var(--ink);
+    }
+    .lead-text { font-size: 18px; line-height: 28px; color: var(--ink-2); }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 20px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-xl); }
+    .btn:focus-visible { outline: 3px solid rgba(0,78,153,0.35); outline-offset: 2px; }
+    .btn-primary { background: var(--linkedin); color: #fff; }
+    .btn-secondary { background: var(--white); color: var(--ink); box-shadow: var(--shadow-md); }
+    .btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* ---------- 1. Hero ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 112px 64px;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -300px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      border-radius: 9999px;
+      background: rgba(0, 78, 153, 0.05);
+      filter: blur(64px);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 64px;
+      align-items: center;
+      max-width: 1152px;
+      margin: 0 auto;
+    }
+    .hero-copy {
+      grid-column: 1 / span 7;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      background: rgba(108, 248, 187, 0.4);
+      color: #00714d;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.48px;
+      align-self: flex-start;
+    }
+    .pill-dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--green-2); }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 56px;
+      line-height: 64px;
+      letter-spacing: -1.4px;
+      color: var(--ink);
+    }
+    .hero h1 span { color: var(--primary); }
+    .hero .lead-text { max-width: 672px; }
+    .hero .sub { font-size: 16px; line-height: 24px; color: var(--ink-3); max-width: 576px; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; padding-top: 8px; }
+
+    .metrics-card {
+      grid-column: 8 / span 5;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .metrics-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .metrics-id { display: flex; align-items: center; gap: 12px; }
+    .metrics-icon {
+      width: 40px; height: 40px; border-radius: 9999px;
+      background: var(--blue-soft);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .metrics-title { font-weight: 600; font-size: 15px; color: var(--ink); line-height: 20px; }
+    .metrics-sub { font-weight: 500; font-size: 12px; letter-spacing: 0.48px; color: var(--ink-3); line-height: 16px; }
+    .tag {
+      background: var(--mint);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.48px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+    .main-metric {
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 24px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .main-metric-top { display: flex; justify-content: space-between; align-items: center; }
+    .main-metric-label { font-weight: 600; font-size: 13px; letter-spacing: 0.26px; color: var(--ink-2); }
+    .main-metric-delta { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; color: var(--green-2); letter-spacing: 0.48px; }
+    .main-metric-value {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 48px;
+      letter-spacing: -0.8px;
+      color: var(--ink);
+    }
+    .sparkline { width: 100%; height: 72px; padding-top: 8px; }
+    .sub-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .sub-card { background: var(--surface); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+    .sub-label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; letter-spacing: 0.48px; color: var(--ink-2); }
+    .sub-value { position: relative; height: 36px; display: flex; align-items: center; gap: 6px; }
+    .sub-value strong {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: -0.42px;
+      color: var(--ink);
+    }
+    .sub-value small { font-weight: 600; font-size: 13px; letter-spacing: 0.26px; color: var(--green-2); }
+
+    /* ---------- 2. Achievements ---------- */
+    .achievements { padding: 112px 40px; background: var(--surface); }
+    .ach-wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 48px; }
+    .ach-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .ach-head-left { display: flex; flex-direction: column; gap: 8px; }
+    .ach-tagline {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: -0.2px;
+      color: var(--ink-2);
+      line-height: 28px;
+    }
+    .ach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .ach-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-height: 96px;
+      box-shadow: var(--shadow-md);
+    }
+    .ach-card.wide { grid-column: span 2; }
+    .ach-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--mint-soft);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .ach-text { font-weight: 500; font-size: 16px; line-height: 24px; color: var(--ink); }
+
+    /* ---------- 3. Lead form ---------- */
+    .lead { padding: 112px 64px; background: var(--bg); }
+    .lead-card {
+      max-width: 1152px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+    }
+    .lead-info {
+      background: var(--primary);
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .lead-info-top { display: flex; flex-direction: column; gap: 12px; }
+    .lead-info .eyebrow { color: var(--blue-soft); }
+    .lead-info h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 48px;
+      letter-spacing: -0.8px;
+      color: #fff;
+    }
+    .lead-info p { font-size: 18px; line-height: 28px; color: var(--blue-text); padding-top: 4px; }
+    .lead-note { display: flex; align-items: center; gap: 12px; padding-top: 16px; font-weight: 600; font-size: 13px; letter-spacing: 0.26px; color: var(--blue-text); }
+
+    .lead-form-wrap { padding: 48px 48px 48px; display: flex; flex-direction: column; }
+    form#leadForm { display: flex; flex-direction: column; gap: 20px; }
+    .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .field label { font-weight: 600; font-size: 13px; letter-spacing: 0.26px; color: var(--ink); }
+    .field input {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: var(--ink);
+      font-size: 16px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .field input::placeholder { color: var(--ink-3); opacity: 1; }
+    .field input:focus { outline: none; border-color: var(--linkedin); background: var(--white); }
+    .field input.invalid { border-color: #ba1a1a; }
+    .btn-form { align-self: flex-start; margin-top: 8px; padding: 14px 32px; }
+    .btn-form svg { width: 12px; height: 12px; }
+    .form-status { font-size: 14px; line-height: 20px; min-height: 20px; }
+    .form-status.ok { color: var(--green-2); }
+    .form-status.err { color: #ba1a1a; }
+
+    /* ---------- 4. ₹1 audit ---------- */
+    .audit { padding: 112px 184px; background: var(--surface); }
+    .audit-card {
+      position: relative;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      padding: 48px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+    .audit-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 8px;
+      background: var(--primary);
+    }
+    .audit-left { width: 469px; max-width: 100%; display: flex; flex-direction: column; gap: 12px; padding: 2px 0 24px; }
+    .badge {
+      align-self: flex-start;
+      background: var(--blue-soft);
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.48px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+    }
+    .audit h2 { font-family: var(--font-display); font-weight: 700; font-size: 40px; line-height: 48px; letter-spacing: -0.8px; color: var(--ink); padding-top: 4px; }
+    .audit h2 span { color: var(--primary); }
+    .audit .lead-text { font-size: 18px; line-height: 28px; }
+    .audit-list { display: flex; flex-direction: column; gap: 12px; padding-top: 12px; }
+    .audit-list li { list-style: none; display: flex; align-items: center; gap: 12px; font-size: 16px; line-height: 24px; color: var(--ink); }
+    .audit-list svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .audit-right {
+      width: 314.8px;
+      max-width: 100%;
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+    .price { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+    .price-value {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 56px;
+      line-height: 64px;
+      letter-spacing: -1.4px;
+      color: var(--primary);
+    }
+    .price-label { font-weight: 600; font-size: 13px; letter-spacing: 0.26px; color: var(--ink-3); }
+    .why { font-weight: 600; font-size: 14px; line-height: 20px; color: var(--ink-2); }
+    .why span { font-weight: 400; }
+    .btn-audit { width: 100%; }
+
+    /* ---------- 5. Reviews ---------- */
+    .reviews { padding: 112px 40px; background: var(--bg); }
+    .reviews-wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; align-items: center; gap: 56px; }
+    .reviews-head { display: flex; flex-direction: column; align-items: center; gap: 8px; max-width: 672px; text-align: center; }
+    .reviews-head .eyebrow { text-align: center; }
+    .reviews-head p { font-size: 16px; line-height: 24px; color: var(--ink-2); padding-top: 4px; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; width: 100%; }
+    .review {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .stars { display: flex; gap: 4px; }
+    .stars svg { width: 15px; height: 14.25px; }
+    .quote { font-size: 18px; line-height: 28px; color: var(--ink); }
+    .reviewer { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .avatar {
+      width: 40px; height: 40px; border-radius: 9999px;
+      background: var(--blue-soft);
+      color: var(--primary-dark);
+      font-weight: 600; font-size: 15px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .reviewer-name { font-weight: 600; font-size: 15px; line-height: 20px; color: var(--ink); }
+    .reviewer-role { font-weight: 500; font-size: 12px; letter-spacing: 0.48px; color: var(--ink-3); line-height: 16px; }
+
+    /* ---------- 6. FAQ ---------- */
+    .faq { padding: 112px 240px; background: var(--surface); }
+    .faq-wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 48px; }
+    .faq-head { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+    .faq-list { display: flex; flex-direction: column; gap: 16px; }
+    .faq-item {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      text-align: left;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: -0.2px;
+      color: var(--ink);
+    }
+    .faq-q:focus-visible { outline: 3px solid rgba(0,78,153,0.35); outline-offset: -3px; }
+    .faq-chev { width: 12px; height: 7.4px; flex-shrink: 0; transition: transform 0.2s ease; }
+    .faq-item.open .faq-chev { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 24px 20px; font-size: 16px; line-height: 24px; color: var(--ink-2); }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1100px) {
+      .audit { padding: 112px 64px; }
+      .faq { padding: 112px 64px; }
+    }
+
+    @media (max-width: 900px) {
+      .hero { padding: 72px 24px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-copy, .metrics-card { grid-column: 1 / -1; }
+      .hero h1 { font-size: 44px; line-height: 52px; letter-spacing: -1px; }
+      .sub-metrics { grid-template-columns: 1fr; }
+
+      .achievements, .reviews { padding: 72px 16px; }
+      .ach-wrap, .reviews-wrap { padding: 0; }
+      .ach-grid { grid-template-columns: 1fr 1fr; }
+      .ach-card.wide { grid-column: 1 / -1; }
+      .h2 { font-size: 32px; line-height: 40px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      .lead { padding: 72px 24px; }
+      .lead-card { grid-template-columns: 1fr; }
+      .lead-info { padding: 36px 28px; }
+      .lead-info h2 { font-size: 32px; line-height: 40px; }
+      .lead-form-wrap { padding: 36px 28px; }
+
+      .audit { padding: 72px 24px; }
+      .audit-card { flex-direction: column; align-items: stretch; padding: 36px 28px; gap: 32px; }
+      .audit-left { width: 100%; }
+      .audit-right { width: 100%; }
+      .audit h2 { font-size: 32px; line-height: 40px; }
+
+      .faq { padding: 72px 16px; }
+      .faq-wrap { padding: 0; }
+      .faq-q { font-size: 17px; padding: 18px 20px; }
+    }
+
+    @media (max-width: 560px) {
+      .hero h1 { font-size: 36px; line-height: 44px; }
+      .hero-ctas .btn { width: 100%; }
+      .field-row { grid-template-columns: 1fr; }
+      .ach-grid { grid-template-columns: 1fr; }
+      .btn-form { width: 100%; }
+      .quote { font-size: 16px; line-height: 24px; }
+      .price-value { font-size: 48px; line-height: 56px; }
+      .lead-form-wrap { padding: 28px 20px; }
+      .lead-info { padding: 28px 20px; }
+      .audit-card { padding: 28px 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- 1. HERO -->
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="pill"><span class="pill-dot"></span>B2B Personal Branding &amp; Growth</span>
+          <h1>Turn Your LinkedIn From<br />Invisible to <span>Influential</span></h1>
+          <p class="lead-text">We don't just “optimize profiles.” We build your personal brand from scratch — with strategy, content, and consistency that actually gets you seen.</p>
+          <p class="sub">From 0 to hero on LinkedIn — without confusion, guesswork, or wasting months figuring it out alone.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#lead">Get Your Profile Audit</a>
+            <a class="btn btn-secondary" href="#lead">Start Growing Today</a>
+          </div>
+        </div>
+
+        <aside class="metrics-card" aria-label="Growth metrics">
+          <div class="metrics-head">
+            <div class="metrics-id">
+              <div class="metrics-icon">
+                <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true"><path d="M1 10 L6 5 L10 8 L19 1" stroke="#004e99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <div class="metrics-title">Authority Growth</div>
+                <div class="metrics-sub">Last 90 Days</div>
+              </div>
+            </div>
+            <span class="tag">Verified ROI</span>
+          </div>
+
+          <div class="main-metric">
+            <div class="main-metric-top">
+              <span class="main-metric-label">Profile Views</span>
+              <span class="main-metric-delta">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M1 9 L5 5 L7 7 L10 2" stroke="#006c49" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                +340%
+              </span>
+            </div>
+            <div class="main-metric-value">18,420</div>
+            <svg class="sparkline" viewBox="0 0 338 72" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="sparkFill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#004e99" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#004e99" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 58 C40 54 60 36 100 40 S160 54 200 28 S270 16 338 6 L338 72 L0 72 Z" fill="url(#sparkFill)"/>
+              <path d="M0 58 C40 54 60 36 100 40 S160 54 200 28 S270 16 338 6" fill="none" stroke="#004e99" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <div class="sub-metrics">
+            <div class="sub-card">
+              <div class="sub-label">
+                <svg width="15" height="12" viewBox="0 0 15 12" fill="none" aria-hidden="true"><rect x="1" y="1" width="13" height="10" rx="2" stroke="#414752" stroke-width="1.5"/><path d="M1 3 L7.5 7 L14 3" stroke="#414752" stroke-width="1.5"/></svg>
+                Inbound Leads
+              </div>
+              <div class="sub-value"><strong>42</strong><small>/mo</small></div>
+            </div>
+            <div class="sub-card">
+              <div class="sub-label">
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="none" aria-hidden="true"><path d="M1 5.5 L8.5 1 L16 5.5 L8.5 10 Z" stroke="#414752" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                Organic Reach
+              </div>
+              <div class="sub-value"><strong>125K</strong><small>+</small></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 2. ACHIEVEMENTS -->
+    <section class="achievements">
+      <div class="ach-wrap">
+        <div class="ach-head">
+          <div class="ach-head-left">
+            <span class="eyebrow">Proven Track Record</span>
+            <h2 class="h2">Real Growth. Real Results.</h2>
+          </div>
+          <p class="ach-tagline">This isn't luck. It's a system that works.</p>
+        </div>
+
+        <div class="ach-grid">
+          <div class="ach-card">
+            <div class="ach-icon">
+              <svg width="22" height="21" viewBox="0 0 22 21" fill="none" aria-hidden="true"><circle cx="8" cy="7" r="3.5" stroke="#00714d" stroke-width="1.6"/><path d="M1.5 19 C1.5 14.5 4.5 12 8 12 S14.5 14.5 14.5 19" stroke="#00714d" stroke-width="1.6" stroke-linecap="round"/><circle cx="16" cy="8" r="2.5" stroke="#00714d" stroke-width="1.6"/><path d="M16 13 C18.5 13 20.5 14.8 20.5 18" stroke="#00714d" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <div class="ach-text">Helped 100+ professionals build authority on LinkedIn</div>
+          </div>
+          <div class="ach-card">
+            <div class="ach-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8" stroke="#00714d" stroke-width="1.6"/><circle cx="10" cy="10" r="4" stroke="#00714d" stroke-width="1.6"/><circle cx="10" cy="10" r="1" fill="#00714d"/></svg>
+            </div>
+            <div class="ach-text">Generated consistent inbound leads through content</div>
+          </div>
+          <div class="ach-card">
+            <div class="ach-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2 L12.4 7.2 L18 7.8 L13.8 11.6 L15 17.2 L10 14.3 L5 17.2 L6.2 11.6 L2 7.8 L7.6 7.2 Z" stroke="#00714d" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="ach-text">Built personal brands from absolute zero</div>
+          </div>
+          <div class="ach-card">
+            <div class="ach-icon">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" aria-hidden="true"><path d="M1 8 C4 3 16 3 19 8 C16 13 4 13 1 8 Z" stroke="#00714d" stroke-width="1.5"/><circle cx="10" cy="8" r="2.5" stroke="#00714d" stroke-width="1.5"/></svg>
+            </div>
+            <div class="ach-text">Content that reaches thousands organically</div>
+          </div>
+          <div class="ach-card wide">
+            <div class="ach-icon">
+              <svg width="20" height="18" viewBox="0 0 20 18" fill="none" aria-hidden="true"><path d="M2 16 L7 10 L11 13 L18 4" stroke="#00714d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 4 H18 V9" stroke="#00714d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="ach-text">Profiles that convert views into opportunities</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. LEAD FORM -->
+    <section class="lead" id="lead">
+      <div class="lead-card">
+        <div class="lead-info">
+          <div class="lead-info-top">
+            <span class="eyebrow">Personalized Strategy</span>
+            <h2>Let's Build Your LinkedIn Presence Together</h2>
+            <p>Tell us a bit about you — and we'll show you exactly how to grow.</p>
+          </div>
+          <div class="lead-note">
+            <svg width="16" height="20" viewBox="0 0 16 20" fill="none" aria-hidden="true"><rect x="1" y="9" width="14" height="10" rx="2" stroke="#dbe6ff" stroke-width="1.5"/><path d="M4 9 V6 A4 4 0 0 1 12 6 V9" stroke="#dbe6ff" stroke-width="1.5"/></svg>
+            No spam. No fluff. Just actionable clarity.
+          </div>
+        </div>
+
+        <div class="lead-form-wrap">
+          <form id="leadForm" novalidate>
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="e.g., Aarav Sharma" autocomplete="name" required />
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="aarav@company.com" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel" required />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-form" id="submitBtn">
+              Get My Growth Plan
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6 H10 M7 3 L10 6 L7 9" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ₹1 AUDIT -->
+    <section class="audit">
+      <div class="audit-card">
+        <div class="audit-left">
+          <span class="badge">Limited Time Offer</span>
+          <h2>Get a Complete LinkedIn Audit for Just <span>Rupee 1</span></h2>
+          <p class="lead-text">Not a sales call. A real breakdown of what's working, what's not, and what to fix.</p>
+          <ul class="audit-list">
+            <li>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#6cf8bb"/><path d="M6 10.5 L8.8 13 L14 7.5" stroke="#00714d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Profile review (headline, banner, positioning)
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#6cf8bb"/><path d="M6 10.5 L8.8 13 L14 7.5" stroke="#00714d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Content gap analysis
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#6cf8bb"/><path d="M6 10.5 L8.8 13 L14 7.5" stroke="#00714d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Personal brand direction
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#6cf8bb"/><path d="M6 10.5 L8.8 13 L14 7.5" stroke="#00714d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Clear action steps to improve visibility
+            </li>
+          </ul>
+        </div>
+
+        <div class="audit-right">
+          <div class="price">
+            <span class="price-value">₹1</span>
+            <span class="price-label">One-time session</span>
+          </div>
+          <p class="why">Why Rupee 1? <span>Because once you see</span><br /><span>the value, you'll know what to do next.</span></p>
+          <a class="btn btn-primary btn-audit" href="https://payments.cashfree.com/forms/getaudit" target="_blank" rel="noopener noreferrer">Book My Audit Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. REVIEWS -->
+    <section class="reviews">
+      <div class="reviews-wrap">
+        <div class="reviews-head">
+          <span class="eyebrow">Client Stories</span>
+          <h2 class="h2">What Our Clients Say</h2>
+          <p>Results speak louder than promises.</p>
+        </div>
+
+        <div class="reviews-grid">
+          <article class="review">
+            <div class="stars" aria-label="5 out of 5 stars"></div>
+            <p class="quote">“I had zero presence before this. Within weeks, I started getting inbound messages and profile views.”</p>
+            <div class="reviewer">
+              <div class="avatar">RK</div>
+              <div>
+                <div class="reviewer-name">Rohan Kapoor</div>
+                <div class="reviewer-role">SaaS Founder</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="stars" aria-label="5 out of 5 stars"></div>
+            <p class="quote">“The clarity I got here saved me months of trial and error.”</p>
+            <div class="reviewer">
+              <div class="avatar">AM</div>
+              <div>
+                <div class="reviewer-name">Ananya Mehta</div>
+                <div class="reviewer-role">Product Director</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="stars" aria-label="5 out of 5 stars"></div>
+            <p class="quote">“It's not just content — it's a full strategy. That's what made the difference.”</p>
+            <div class="reviewer">
+              <div class="avatar">VS</div>
+              <div>
+                <div class="reviewer-name">Vikram Singh</div>
+                <div class="reviewer-role">B2B Consultant</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="stars" aria-label="5 out of 5 stars"></div>
+            <p class="quote">“I finally understand how LinkedIn actually works.”</p>
+            <div class="reviewer">
+              <div class="avatar">NK</div>
+              <div>
+                <div class="reviewer-name">Neha Kulkarni</div>
+                <div class="reviewer-role">Executive Coach</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FAQ -->
+    <section class="faq">
+      <div class="faq-wrap">
+        <div class="faq-head">
+          <span class="eyebrow">Got Questions?</span>
+          <h2 class="h2">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Who is this service for?
+              <svg class="faq-chev" viewBox="0 0 12 7.4" fill="none" aria-hidden="true"><path d="M1 1 L6 6 L11 1" stroke="#131b2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-a">For professionals and founders who want to be recognised, trusted, and found on LinkedIn, whatever their industry.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Do you create content for me?
+              <svg class="faq-chev" viewBox="0 0 12 7.4" fill="none" aria-hidden="true"><path d="M1 1 L6 6 L11 1" stroke="#131b2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-a">Yes. We build a content strategy and create posts that match your voice, then keep you consistent.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              How long does it take to see results?
+              <svg class="faq-chev" viewBox="0 0 12 7.4" fill="none" aria-hidden="true"><path d="M1 1 L6 6 L11 1" stroke="#131b2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-a">Most clients notice profile views and inbound messages within the first few weeks of consistent activity.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Is this only for job seekers?
+              <svg class="faq-chev" viewBox="0 0 12 7.4" fill="none" aria-hidden="true"><path d="M1 1 L6 6 L11 1" stroke="#131b2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-a">No. It's for anyone building authority, including founders, consultants, coaches, and sales leaders.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What makes this different?
+              <svg class="faq-chev" viewBox="0 0 12 7.4" fill="none" aria-hidden="true"><path d="M1 1 L6 6 L11 1" stroke="#131b2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-a">We work on the whole system, strategy, content, and consistency, not just a profile rewrite.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Do I need prior experience on LinkedIn?
+              <svg class="faq-chev" viewBox="0 0 12 7.4" fill="none" aria-hidden="true"><path d="M1 1 L6 6 L11 1" stroke="#131b2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-a">None at all. We start from zero and guide you step by step.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ----- Google Apps Script endpoint -----
+    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxPZgFRsOTcDYiewgC8R4NlxXbCNJou0gatDG1Y5uHGM2L_AzqFoyphCDryDgo2dY_0w/exec";
+
+    // ----- Stars (5 per review) -----
+    var starSvg = '<svg viewBox="0 0 15 14.25" fill="#f5b301" aria-hidden="true"><path d="M7.5 0 L9.5 4.6 L14.5 5 L10.7 8.3 L11.9 13.2 L7.5 10.6 L3.1 13.2 L4.3 8.3 L0.5 5 L5.5 4.6 Z"/></svg>';
+    document.querySelectorAll('.stars').forEach(function (el) {
+      el.innerHTML = starSvg + starSvg + starSvg + starSvg + starSvg;
+    });
+
+    // ----- FAQ accordion -----
+    document.querySelectorAll('.faq-q').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.parentElement;
+        var isOpen = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+      });
+    });
+
+    // ----- Lead form -----
+    var form = document.getElementById('leadForm');
+    var submitBtn = document.getElementById('submitBtn');
+    var statusEl = document.getElementById('formStatus');
+    var nameInput = document.getElementById('name');
+    var emailInput = document.getElementById('email');
+    var phoneInput = document.getElementById('phone');
+
+    function setStatus(msg, type) {
+      statusEl.textContent = msg;
+      statusEl.className = 'form-status ' + (type || '');
+    }
+
+    function showSuccess() {
+      setStatus('Thanks! We\'ll reach out with your growth plan shortly.', 'ok');
+      form.reset();
+      submitBtn.disabled = false;
+    }
+
+    function showError() {
+      setStatus('Something went wrong. Please try again in a moment.', 'err');
+      submitBtn.disabled = false;
+    }
+
+    function validate() {
+      var ok = true;
+      [nameInput, emailInput, phoneInput].forEach(function (input) {
+        var value = input.value.trim();
+        var valid = value.length > 0;
+        if (input === emailInput && valid) {
+          valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        }
+        input.classList.toggle('invalid', !valid);
+        if (!valid) ok = false;
+      });
+      return ok;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validate()) {
+        setStatus('Please fill in your name, a valid email, and phone number.', 'err');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      setStatus('Sending…', '');
+
+      var url = SCRIPT_URL + "?" + new URLSearchParams({
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        phone: phoneInput.value.trim()
+      });
+
+      fetch(url, { method: "GET", mode: "no-cors" })
+        .then(function () { showSuccess(); })
+        .catch(function () { showError(); });
+    });
+  </script>
+</body>
+</html>
